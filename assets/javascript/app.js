@@ -7,3 +7,16 @@
 // once game ends calculate total score 
 // total up right to wrong 
 
+
+//setting global variables for the game.
+var score = 0;
+var total = 7;
+var point = 1;
+var highest = total * point;
+
+
+// creating a function to initialize the game
+
+function init() {
+    // set the correct guesses to 0 at start
+}
