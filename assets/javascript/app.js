@@ -52,15 +52,19 @@ var questions = [
         correctAnswer: 2,
     },
 ];
+// for website load, it hides the buttons and requires you to click start
 $(".answer").hide();
 $("#start-btn").on("click", startGame);
 
+//function that starts the game 
 function startGame() {
     $("#start-btn").hide();
     $("#questions").show();
     $(".answer").show();
+    // calls the timer function to start
     run();
     $("#display").show();
+    // displays the quesion array with its corresponding objects
     $("#question").html(questions[i].question)
     $("#a").html(questions[i].answers[0]);
     $("#b").html(questions[i].answers[1]);
@@ -70,7 +74,7 @@ function startGame() {
 };
 
 
-
+// on click function to store the variables using this
 $(".answer").on("click", function () {
     userChoice = $(this).val();
     console.log(userChoice);
@@ -88,12 +92,12 @@ $(".answer").on("click", function () {
         nextQuestion();
     }
 })
-
+// function for the timer to start
 function run() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
 }
-
+// function for time to go down by 1 sec
 function decrement() {
 
     if (timer > 0) {
@@ -107,10 +111,11 @@ function decrement() {
 
 };
 
-
+//stops timer function
 function stop() {
     clearInterval(intervalId);
 }
+// pulls the next question
 function nextQuestion() {
     if (i > 7 - 1) {
         i = 0;
@@ -129,6 +134,7 @@ function nextQuestion() {
     console.log(questions[i].question)
 
 }
+// function for a timeout
 function gameOver() {
     alert("Wow, couldn't beat 9.9 Classic Mode. Pathetic. You should uninstall your Switch.")
     $("#question").hide();
@@ -138,9 +144,9 @@ function gameOver() {
     $("#wrong").html("Wrong answers: " + wrong)
     $("#unanswered").html("Unanswered: " + unanswered)
 }
-
+// function for completing the quiz
 function results() {
-    alert("BUSTA WOLF!")
+    alert(" HEY! C'MON C'MON BUSTA WOLF! ")
     stop();
     $("#question").hide();
     $("button").hide();
