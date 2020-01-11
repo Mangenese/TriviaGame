@@ -7,18 +7,12 @@
 // once game ends calculate total score 
 // total up right to wrong 
 
-
-//setting global variables for the game.
+var i = 0
+var userChoice;
 var score = 0;
-var total = 7;
-var point = 1;
-
-var correct = 0;
-var incorrect= 0;
-
-// set up varibles and objects for our questions
-
-var number = 10;
+var wrong = 0;
+var unanswered = 7;
+var timer = 40;
 var intervalId;
 
 var questions = [
@@ -58,8 +52,65 @@ var questions = [
         correctAnswer: 2,
     },
 ];
+$(".answer").hide();
+$("#start-btn").on("click", startGame);
 
-//function for pasting the questions in html 
+function startGame() {
+    $("#start-btn").hide();
+    $("#questions").show();
+    $(".answer").show();
+    run();
+    $("#display").show();
+    $("#question").html(questions[i].question)
+    $("#a").html(questions[i].answers[0]);
+    $("#b").html(questions[i].answers[1]);
+    $("#c").html(questions[i].answers[2]);
+    $("#d").html(questions[i].answers[3]);
+
+};
+
+
+
+$(".answer").on("click", function () {
+    userChoice = $(this).val();
+    console.log(userChoice);
+    if (userChoice == questions[i].correctAnswer) {
+        i++;
+        score++;
+        unanswered--;
+        timer = 45;
+        nextQuestion();
+    } else {
+        wrong++;
+        i++;
+        unanswered--;
+        timer =45;
+        nextQuestion();
+    }
+})
+
+function nextQuestion() {
+    if (i > 7 - 1) {
+        i = 0;
+        gameOver();
+        $("#right").html("Right answers: " + score)
+        $("#wrong").html("Wrong answers: " + wrong)
+        $("#unanswered").html("Unanswered: " + unanswered)
+    }
+    $("#question").html(questions[i].question)
+    $("#a").html(questions[i].answers[0]);
+    $("#b").html(questions[i].answers[1]);
+    $("#c").html(questions[i].answers[2]);
+    $("#d").html(questions[i].answers[3]);
+
+
+    console.log(questions[i].question)
+
+}
+function gameOver() {
+    $("#question").hide();
+    $("button").hide();
+}
 
 
 function run() {
@@ -68,11 +119,11 @@ function run() {
 }
 
 function decrement() {
-    number--;
-    $("#remainingTime").html("<h1> Time Remaining:" + number + "</h1>");
-    if (number === 0) {
+    timer--;
+    $("#display").text(" Time Remaining:" + timer );
+    if (timer === 0) {
         // run results
-        stop();
+        nextQuestion();
 
     };
 };
@@ -81,58 +132,4 @@ function decrement() {
 function stop() {
     clearInterval(intervalId);
 }
-// a function to paste the questions into the quiz area
-function showQuestions(Start) {
 
-
-    for (var i = 0; i < questions.length; i++) {
-        var h3 = $("<h3>");
-        h3.text(questions[i].question);
-        $("#quizQuestion").append(h3);
-        var ul = $("<div>");
-
-        for (var j = 0; j < questions[i].answers.length; j++) {
-            var li = $("<button>");
-            li.addClass("answer");
-            li.attr("data-name", questions[i].answers[j]);
-            li.text(questions[i].answers[j]);
-            ul.append(li);
-            $("#quizQuestion").append(ul);
-        }
-    };
-    clickyBoi();
-    clickyBoi1();
-};
-//function for on click
-var clickyBoi = function() {
-    $("button").on("click", function(){
-    var answer = $(this).attr("data-name");
-    
-    if ($(this).attr("data-name") === questions[0].correctAnswer) {
-        console.log("WEINER!");
-    } else if ($(this).attr("data-name") != questions[0].correctAnswer) {
-        console.log("NO BUENO!");
-    } console.log(answer);
-    });
-
-    
-    }
-    
-    var clickyBoi1 = function() {
-        $("button").on("click", function(){
-        var answer = $(this).attr("data-name");
-        
-        if ($(this).attr("data-name") === questions[1].correctAnswer) {
-            console.log("WEINER!");
-        } else if ($(this).attr("data-name") != questions[1].correctAnswer) {
-            console.log("NO BUENO!");
-        } console.log(answer);
-        });
-    
-        
-        }
-
-
-
-run();
-showQuestions();

@@ -17,18 +17,22 @@
     <h1>Super Smash Brother's Trivia!</h1>
 
     <div class="container">
+        <div id="display"></div>
         <div id="question-container" class="hide">
-            <div id="question">Question</div>
+            <div id="question"></div>
             <div id="answer-button" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-                </div>
-        </div>
-        <div class="controls"></div>
+                <button id="a" class="answer" value="0">A</button>
+                <button id="b" class="answer" value="1" >b</button>
+                <button id="c" class="answer" value="2">c</button>
+                <button id="d" class="answer" value="3">d</button>
+            </div>
+               
+       
         <button id="start-btn" class="start-btn btn">Start</button>
-    </div>
+   
+    <div id="right"></div>
+    <div id="wrong"></div>
+    <div id="unanswered"></div>
 
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
