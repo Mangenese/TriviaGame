@@ -12,7 +12,7 @@ var userChoice;
 var score = 0;
 var wrong = 0;
 var unanswered = 7;
-var timer = 40;
+var timer = 5;
 var intervalId;
 
 var questions = [
@@ -78,21 +78,43 @@ $(".answer").on("click", function () {
         i++;
         score++;
         unanswered--;
-        timer = 45;
+        timer = 5;
         nextQuestion();
     } else {
         wrong++;
         i++;
         unanswered--;
-        timer =45;
+        timer = 5;
         nextQuestion();
     }
 })
 
+function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+}
+
+function decrement() {
+
+    if (timer > 0) {
+        timer--;
+        $("#display").text(timer);
+        console.log(timer);
+    } else if (timer === 0) {
+        gameOver();
+        stop();
+    }
+
+};
+
+
+function stop() {
+    clearInterval(intervalId);
+}
 function nextQuestion() {
     if (i > 7 - 1) {
         i = 0;
-        gameOver();
+        results();
         $("#right").html("Right answers: " + score)
         $("#wrong").html("Wrong answers: " + wrong)
         $("#unanswered").html("Unanswered: " + unanswered)
@@ -108,28 +130,24 @@ function nextQuestion() {
 
 }
 function gameOver() {
+    alert("Wow, couldn't beat 9.9 Classic Mode. Pathetic. You should uninstall your Switch.")
     $("#question").hide();
     $("button").hide();
+    $("#display").hide();
+    $("#right").html("Right answers: " + score)
+    $("#wrong").html("Wrong answers: " + wrong)
+    $("#unanswered").html("Unanswered: " + unanswered)
 }
 
-
-function run() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
+function results() {
+    alert("BUSTA WOLF!")
+    stop();
+    $("#question").hide();
+    $("button").hide();
+    $("#display").hide();
+    $("#right").html("Right answers: " + score)
+    $("#wrong").html("Wrong answers: " + wrong)
+    $("#unanswered").html("Unanswered: " + unanswered)
 }
 
-function decrement() {
-    timer--;
-    $("#display").text(" Time Remaining:" + timer );
-    if (timer === 0) {
-        // run results
-        nextQuestion();
-
-    };
-};
-
-
-function stop() {
-    clearInterval(intervalId);
-}
 
