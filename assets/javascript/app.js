@@ -12,19 +12,19 @@ var userChoice;
 var score = 0;
 var wrong = 0;
 var unanswered = 7;
-var timer = 5;
+var timer = 15;
 var intervalId;
 
 var questions = [
     {
         question: "Who of the following was not playable in Smash 64?",
         answers: ['Yoshi', 'Pikachu', 'Ness', 'Peach',],
-        correctAnswer: 'Peach',
+        correctAnswer: 3,
     },
     {
         question: "Who of the following was not playable in Melee?",
         answers: ['Eliwood', 'Mr. Game & Watch', 'Bowswer', 'Shiek',],
-        correctAnswer: 1,
+        correctAnswer: 0,
     },
     {
         question: "Who of the following was not playable in Brawl?",
@@ -42,12 +42,12 @@ var questions = [
         correctAnswer: 1,
     },
     {
-        question: "Which items can you use in Smash Ultimate?",
+        question: "Which item is not in Smash Ultimate?",
         answers: ['Pokeball', 'Party Stick', 'Dragoon', 'Beam Sword',],
         correctAnswer: 1,
     },
     {
-        question: "Which of the following are not assist trophies?",
+        question: "Which of the following are not assist trophies in Smash Ulimate?",
         answers: ['Black Knight', 'Waluigi', 'Dark Samus', 'Krystal',],
         correctAnswer: 2,
     },
@@ -78,13 +78,13 @@ $(".answer").on("click", function () {
         i++;
         score++;
         unanswered--;
-        timer = 5;
+        timer = 15;
         nextQuestion();
     } else {
         wrong++;
         i++;
         unanswered--;
-        timer = 5;
+        timer = 15;
         nextQuestion();
     }
 })

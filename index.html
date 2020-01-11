@@ -7,33 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Smash Bros Trivia!</title>
     <link href="assets/css/reset.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
+    <section>
+        <h1>Super Smash Brother's Trivia!</h1>
 
-    <h1>Super Smash Brother's Trivia!</h1>
-
-    <div class="container">
-        <div id="display"></div>
-        <div id="question-container" class="hide">
-            <div id="question"></div>
-            <div id="answer-button" class="btn-grid">
-                <button id="a" class="answer" value="0">A</button>
-                <button id="b" class="answer" value="1" >b</button>
-                <button id="c" class="answer" value="2">c</button>
-                <button id="d" class="answer" value="3">d</button>
+        <div class="container">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <div id="display"></div>
+            <div id="question-container" class="hide">
+                <div id="question"></div>
+                <div id="answer-button" class="btn-grid">
+                    <button id="a" class="answer" value="0">A</button>
+                    <button id="b" class="answer" value="1">b</button>
+                    <button id="c" class="answer" value="2">c</button>
+                    <button id="d" class="answer" value="3">d</button>
+                </div>
             </div>
-               
-       
-        <button id="start-btn" class="start-btn btn">Start</button>
-   
-    <div id="right"></div>
-    <div id="wrong"></div>
-    <div id="unanswered"></div>
-
+            <div scoreboard>
+                <div id="right"></div>
+                <div id="wrong"></div>
+                <div id="unanswered"></div>
+            </div>
+        </div>
+    </section>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
