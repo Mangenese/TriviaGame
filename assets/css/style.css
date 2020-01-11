@@ -23,9 +23,9 @@ html {
     margin: 0 auto;
     margin-top: 100px;
     min-height: 400px;
-    padding-top: 7%;
+    padding-top: 6.5%;
     border-radius: 200px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 button  {
