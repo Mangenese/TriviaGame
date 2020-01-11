@@ -16,39 +16,19 @@
 
     <h1>Super Smash Brother's Trivia!</h1>
 
-    <section class="container">
-        <div id="remainingTime"></div>
-
-
-
-        <div id="quizForm">
-        <div id="quizQuestion"></div>
-        <div id="answerBox"></div>
-        <div id="a0" class="choices"></div>
-        <div id="a1" class="choices"></div>
-        <div id="a2" class="choices"></div>
-        <div id="a3" class="choices"></div>
-
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-button" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+                </div>
         </div>
-        
-
-
-
-        <div id="scoreboard">
-            <div id="correct">Correct:</div>
-            <div id="wrong">Wrong:</div>
-            
-        </div>
-
-
-
-
-
-
-
-
-
-    </section>
+        <div class="controls"></div>
+        <button id="start-btn" class="start-btn btn">Start</button>
+    </div>
 
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>

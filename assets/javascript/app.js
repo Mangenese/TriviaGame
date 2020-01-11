@@ -101,6 +101,7 @@ function showQuestions(Start) {
         }
     };
     clickyBoi();
+    clickyBoi1();
 };
 //function for on click
 var clickyBoi = function() {
@@ -117,6 +118,19 @@ var clickyBoi = function() {
     
     }
     
+    var clickyBoi1 = function() {
+        $("button").on("click", function(){
+        var answer = $(this).attr("data-name");
+        
+        if ($(this).attr("data-name") === questions[1].correctAnswer) {
+            console.log("WEINER!");
+        } else if ($(this).attr("data-name") != questions[1].correctAnswer) {
+            console.log("NO BUENO!");
+        } console.log(answer);
+        });
+    
+        
+        }
 
 
 
