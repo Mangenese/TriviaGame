@@ -12,147 +12,113 @@
 var score = 0;
 var total = 7;
 var point = 1;
-var highest = total * point;
+
+var correct = 0;
+var incorrect= 0;
 
 // set up varibles and objects for our questions
 
-var number= 10;
+var number = 10;
 var intervalId;
 
 var questions = [
     {
         question: "Who of the following was not playable in Smash 64?",
-        answers: [
-             'Yoshi',
-             'Pikachu',
-             'Ness',
-             'Peach',
-        ],
-        correctAnswer: 'd',
+        answers: ['Yoshi', 'Pikachu', 'Ness', 'Peach',],
+        correctAnswer: 'Peach',
     },
     {
         question: "Who of the following was not playable in Melee?",
-        answers: [
-             'Eliwood',
-             'Mr. Game & Watch',
-             'Bowswer',
-             'Shiek',
-        ],
-        correctAnswer: 'a'
+        answers: ['Eliwood', 'Mr. Game & Watch', 'Bowswer', 'Shiek',],
+        correctAnswer: 1,
     },
     {
         question: "Who of the following was not playable in Brawl?",
-        answers: [
-            'Wolf',
-            'Lucas',
-            'Sonic The Hedgehog',
-            'Roy',
-],
-        correctAnswer: 'd'
+        answers: ['Wolf', 'Lucas', 'Sonic The Hedgehog', 'Roy',],
+        correctAnswer: 3,
     },
     {
         question: "Who of the following was not playable in Smash 4?",
-        answers: [
-            'Mega Man',
-            'Little Mac',
-            'Lucina',
-            'Ivysaur',
-        ],
-        correctAnswer: 'd'
+        answers: ['Mega Man', 'Little Mac', 'Lucina', 'Ivysaur',],
+        correctAnswer: 3,
     },
     {
         question: "Who of the following was not playable in Smash Ultimate?",
-        answers: [
-            'Ken',
-            'Shadow The Hedgehog',
-            'Joker',
-            'Simon',
-        ],
-        correctAnswer: 'b'
+        answers: ['Ken', 'Shadow The Hedgehog', 'Joker', 'Simon',],
+        correctAnswer: 1,
     },
     {
         question: "Which items can you use in Smash Ultimate?",
-        answers: [
-            'Pokeball',
-            'Party Stick',
-            'Dragoon',
-            'Beam Sword',
-        ],
-        correctAnswer: 'b'
+        answers: ['Pokeball', 'Party Stick', 'Dragoon', 'Beam Sword',],
+        correctAnswer: 1,
     },
     {
         question: "Which of the following are not assist trophies?",
-        answers: [
-            'Black Knight',
-            'Waluigi',
-            'Dark Samus',
-            'Krystal',
-        ],
-        correctAnswer: 'c'
+        answers: ['Black Knight', 'Waluigi', 'Dark Samus', 'Krystal',],
+        correctAnswer: 2,
     },
 ];
 
 //function for pasting the questions in html 
 
 
-function run(){
+function run() {
     clearInterval(intervalId);
-    intervalId =setInterval(decrement ,1000);
- }
- 
- function decrement() {
-     number--;
-     $("#display").html("<h2>" + number + "</h2>");
-     if (number === 0) {
-         // run results
-         stop();
- 
-         alert("times up");
-     };
- };
- 
- 
- function stop(){
-     clearInterval(intervalId);
- } 
+    intervalId = setInterval(decrement, 1000);
+}
 
-function showQuestions(Start) {
-   
-    
-    for(var i = 0; i<questions.length; i++){
-        var h3 = $("<h3>");
-        h3.text(questions[i].question);
-        $("#quiz").append(h3);
-        var ul = $("<ul>");
+function decrement() {
+    number--;
+    $("#remainingTime").html("<h1> Time Remaining:" + number + "</h1>");
+    if (number === 0) {
+        // run results
+        stop();
 
-        for(var j = 0; j<questions[i].answers.length; j++){
-            var li = $("<li <input='radio'>");
-            
-           
-            li.text(questions[i].answers[j]);
-            ul.append(li);
-            $("#quiz").append(ul);
-        }
     };
-     
-    
 };
 
+
+function stop() {
+    clearInterval(intervalId);
+}
+// a function to paste the questions into the quiz area
+function showQuestions(Start) {
+
+
+    for (var i = 0; i < questions.length; i++) {
+        var h3 = $("<h3>");
+        h3.text(questions[i].question);
+        $("#quizQuestion").append(h3);
+        var ul = $("<div>");
+
+        for (var j = 0; j < questions[i].answers.length; j++) {
+            var li = $("<button>");
+            li.addClass("answer");
+            li.attr("data-name", questions[i].answers[j]);
+            li.text(questions[i].answers[j]);
+            ul.append(li);
+            $("#quizQuestion").append(ul);
+        }
+    };
+    clickyBoi();
+};
+//function for on click
+var clickyBoi = function() {
+    $("button").on("click", function(){
+    var answer = $(this).attr("data-name");
+    
+    if ($(this).attr("data-name") === questions[0].correctAnswer) {
+        console.log("WEINER!");
+    } else if ($(this).attr("data-name") != questions[0].correctAnswer) {
+        console.log("NO BUENO!");
+    } console.log(answer);
+    });
+
+    
+    }
+    
 
 
 
 run();
 showQuestions();
-
-    
-console.log(questions);
-
-//<form class="questionForm" id="q1" data-question="1">
-{/* <h3>Who of the following was not playable in Smash 64?</h3>  
-<ul>
-    <li><input type="radio" name="q1" value="a">Yoshi</li>
-    <li><input type="radio" name="q1" value="b">Pikachu</li>
-    <li><input type="radio" name="q1" value="c">Ness</li>
-    <li><input type="radio" name="q1" value="d">Peach</li>
-</ul>
-</form> */}
